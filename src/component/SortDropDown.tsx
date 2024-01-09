@@ -2,6 +2,8 @@
 import { useRef } from "react";
 import useMoviesQuery from "../state-management/MovieQueryStore";
 
+// refacter this code.
+
 function SortDropDown() {
   const sortValues = [
     { label: "popularity asc", value: "popularity.asc" },
