@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { FetchResponse } from "../entities/FetchResponse";
 
 const axiosinstance = axios.create({
@@ -16,8 +16,8 @@ class APIClient<T> {
         this.endpoint = endpoint
     }
 
-    getAll = () => {
-        return axiosinstance.get<FetchResponse<T>>(this.endpoint).then((res) => res.data);
+    getAll = (requestConfig?: AxiosRequestConfig) => {
+        return axiosinstance.get<FetchResponse<T>>(this.endpoint, requestConfig).then((res) => res.data);
     }
 
     getGenre = () => {
