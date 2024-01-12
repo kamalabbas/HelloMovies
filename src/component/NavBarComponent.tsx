@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
+import { SearchComponent } from './SearchComponent';
 
 function NavbarComponent() {
   return (
@@ -16,6 +17,8 @@ function NavbarComponent() {
             <Nav.Link to="series" as={NavLink}>TV Series</Nav.Link>
           </Nav>
         </Navbar.Collapse>
+
+        <SearchComponent />
       </Container>
     </Navbar>
   );
