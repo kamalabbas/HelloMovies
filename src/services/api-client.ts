@@ -30,3 +30,8 @@ class APIClient<T> {
 }
 
 export default APIClient;
+
+export function getresults<T>(endpoint: string, requestConfig?: AxiosRequestConfig) {
+    return axiosinstance.get<FetchResponse<T>>(endpoint, requestConfig).then((res) => res.data);
+}
+

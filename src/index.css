@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .row-gap-24 {
+    row-gap: 1.5rem;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.overlay-color {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.yesss:hover .overlay-color {
+    display: block!important;
+}
+
+.yesss:hover .genere {
+    transform: translateX(0);
+}
+
+.genere {
+    transition: all 0.25s ease-in-out;
+    transform: translateX(calc(-100% - 16px));
+} */

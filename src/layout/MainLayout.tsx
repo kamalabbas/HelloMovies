@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
 import NavbarComponent from "../component/NavBarComponent";
-import { Container } from "react-bootstrap";
 
 export const MainLayout = () => {
   return (
-    <>
-      <NavbarComponent />
+    <>  
+    <div className="container">
+        <NavbarComponent />
 
-      <Container className="my-4">
-        <Outlet />
-      </Container>
+        <div className="my-4">
+          <Outlet />
+        </div>
+    </div>
     </>
   );
 };

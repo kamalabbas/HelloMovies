@@ -1,4 +1,3 @@
-// import Dropdown from "react-bootstrap/esm/Dropdown";
 import { useRef } from "react";
 import useMoviesQuery from "../state-management/MovieQueryStore";
 
