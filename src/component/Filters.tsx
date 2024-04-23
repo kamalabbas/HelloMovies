@@ -5,8 +5,12 @@ export const Filters = () => {
 
   return (
     <>
-      <GenreDropDown />
-      <SortDropDown />
+      <div className="flex gap-5 mb-6">
+        <GenreDropDown />
+        <SortDropDown />
+      </div>
     </>
   );
 };
+
+

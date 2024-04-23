@@ -35,3 +35,10 @@ export function getresults<T>(endpoint: string, requestConfig?: AxiosRequestConf
     return axiosinstance.get<FetchResponse<T>>(endpoint, requestConfig).then((res) => res.data);
 }
 
+export function getGenre<T>(endpoint: string) {
+    return axiosinstance.get<T>(endpoint).then(res => res.data);
+}
+
+export function getVideos<T>(endpoint:string) {
+    return axiosinstance.get<T>(endpoint).then(res => res.data);
+}

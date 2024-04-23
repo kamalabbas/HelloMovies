@@ -5,6 +5,7 @@ import useMoviesQuery from "../state-management/MovieQueryStore";
 
 function SortDropDown() {
   const sortValues = [
+    { label: "Sort", value: "Sort" },
     { label: "popularity asc", value: "popularity.asc" },
     { label: "popularity desc", value: "popularity.desc" },
     { label: "revenue asc", value: "revenue.asc" },
@@ -17,12 +18,10 @@ function SortDropDown() {
   ];
 
   const SelectedSortOrder = useRef<HTMLSelectElement>(null);
-
-//   const sortValue = useMoviesQuery(s => s.movieQuery.sortValue);
   const setSortOrder = useMoviesQuery(s => s.setSortOrder);
 
   return (
-    <select ref={SelectedSortOrder} onChange={() => setSortOrder(SelectedSortOrder.current?.value)} id="dropdown-basic-button" className="mb-4">
+    <select className="select w-full max-w-xs" ref={SelectedSortOrder} onChange={() => setSortOrder(SelectedSortOrder.current?.value)} id="dropdown-basic-button">
       {sortValues?.map((sort) => (
         <option key={sort.value} value={sort.value}>{sort.label}</option>
       ))}

@@ -1,21 +1,19 @@
 
+import {ChangeEvent} from "react";
 import useGenres from "../hooks/useGenres";
 import useMoviesQuery from "../state-management/MovieQueryStore";
 
 function GenreDropDown() {
-  const { data } = useGenres();
-
-  const genreId = useMoviesQuery((s) => s.movieQuery.genreId);
   const setGenreId = useMoviesQuery((s) => s.setGenreId);
-
-  // to look it over 
-  const selectedGenre = (genreId: number) => data?.genres.find((item) => genreId == item.id);
-
+  const type = useMoviesQuery((s) => s.movieQuery.type);
+  const { data } = useGenres(type);
+    
   return (
-    <select id="dropdown-basic-button" title={genreId ? selectedGenre(genreId)?.name : 'Genres'} className="mb-4">
-    {data?.genres.map((item) => (
-        <option onClick={() => setGenreId(item.id)} key={item.id}>{item.name}</option>
-      ))}
+    <select className="select w-full max-w-xs" id="dropdown-basic-button" onChange={(e: ChangeEvent<HTMLSelectElement>) => setGenreId(+e.target.value)}>
+      <option value="0">Select Category</option>
+      {data?.genres.map((item) => (
+          <option key={item.id} value={item.id}>{item.name}</option>
+        ))}
     </select>
   );
 }

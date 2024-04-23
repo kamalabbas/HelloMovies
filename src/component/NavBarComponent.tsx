@@ -4,33 +4,19 @@ import useMoviesQuery from "../state-management/MovieQueryStore";
 
 function NavbarComponent() {
   const setApiType = useMoviesQuery((s) => s.setApiType);
+  const setType = useMoviesQuery((s) => s.setType);
 
   return (
-    // <div data-bs-theme="dark" className="bg-body-tertiary">
-    //   <div>
-    //     <NavLink to="/">Hello Movies</NavLink>
-    //     <div aria-controls="basic-navbar-nav" />
-    //     <div id="basic-navbar-nav">
-    //       <ul className="me-auto">
-    //         <NavLink to="/">Home</NavLink>
-    //         <NavLink to="movies" onClick={() => setApiType('/discover/movie')}>Movies</NavLink>
-    //         <NavLink to="series" onClick={() => setApiType('/discover/tv')}>TV Series</NavLink>
-    //       </ul>
-    //     </div>
-
-    //     <SearchComponent />
-    //   </div>
-    // </div>
 
     <div className="navbar bg-base-100 py-6">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Hello Movies</a>
+        <NavLink to="/" className="btn btn-ghost text-xl">Hello Movies</NavLink>
       </div>
       <div className="flex-none gap-2">
         <ul className="menu menu-horizontal px-1 hidden md:flex">
           <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="movies" onClick={() => setApiType('/discover/movie')}>Movies</NavLink></li>
-          <li><NavLink to="series" onClick={() => setApiType('/discover/tv')}>TV Series</NavLink></li>
+          <li><NavLink to="movies" onClick={() => {setApiType('/discover/movie'); setType('movie')}}>Movies</NavLink></li>
+          <li><NavLink to="tv-series" onClick={() => {setApiType('/discover/tv'); setType('tv')}}>TV Series</NavLink></li>
         </ul>
       
         <SearchComponent />
