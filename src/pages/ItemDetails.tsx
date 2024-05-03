@@ -15,12 +15,12 @@ export const ItemDetails = () => {
 
   if(isLoading)
     return (
-      <div className="flex gap-10">
+      <div className="flex gap-10 container">
         <div className="">
-          <SekeltonCard count={1} width={23.125}/>
+          <SekeltonCard count={1} width={18.75}/>
         </div>
         <div className="details w-full">
-          <SkeletonText count={4} />
+          <SkeletonText count={6} />
         </div>
       </div>
     );
@@ -28,34 +28,35 @@ export const ItemDetails = () => {
 
   if (!isLoading) {
     return (
-      <>
-        {/* style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!)})`}} */}
-        <div className="flex gap-10 bg-cover bg-no-repeat bg-center">
-          <div className="">
-            <img
-              className="max-h-[28.125rem]"
-              src={Imagehandler(data?.poster_path!)}
-              alt=""
-            />
-          </div>
-          <div className="details">
-            <div className="flex gap-4">
-              <h1>{data?.title}</h1> ({data?.release_date.substring(0, 4)})
+      <div>
+        <div className="bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!, 'large')})`}}>
+          <div className="container flex gap-10 py-8">
+            <div className="max-w-[18.75rem]">
+              <img className="rounded-xl"
+                src={Imagehandler(data?.poster_path!)}
+                alt=""
+              />
             </div>
+            <div className="details">
+              <div className="flex gap-2">
+                <h1>{data?.title}</h1><span>({data?.release_date.substring(0, 4)})</span>
+              </div>
 
-            <h2>{data?.tagline}</h2>
+              <h2>{data?.tagline}</h2>
 
-            <div>
-              <h2>Overview</h2>
-              <p>{data?.overview}</p>
+              <div>
+                <h2>Overview</h2>
+                <p>{data?.overview}</p>
+              </div>
             </div>
-          </div>
+          </div>          
         </div>
 
-        <div>
+        <div className="container mt-12">
           <iframe
             width="560"
             height="315"
+            style={{maxWidth:'100%'}}
             src={`https://www.youtube.com/embed/${
               videos?.results.find((item) => item.type == "Trailer")?.key
             }`}
@@ -63,7 +64,7 @@ export const ItemDetails = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           ></iframe>
         </div>
-      </>
+      </div>
     );
   }
 };

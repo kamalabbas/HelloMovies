@@ -14,6 +14,7 @@ const router = createBrowserRouter([
       { path: "movies", element: <DataGrid /> },
       { path: "tv-series", element: <DataGrid /> },
       { path: "movie/:id", element: <ItemDetails /> },
+      { path: "series/:id", element: <ItemDetails /> },
       { path: "*", element: <NotFound /> },
     ],
   },

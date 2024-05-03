@@ -8,7 +8,6 @@ const axiosinstance = axios.create({
         accept:' application/json'
     },
 });
-
 class APIClient<T> {
     private endpoint: string;
 
@@ -31,14 +30,16 @@ class APIClient<T> {
 
 export default APIClient;
 
+export function get<T>(endpoint: string, requestConfig?: AxiosRequestConfig) {
+    return axiosinstance.get<T>(endpoint, requestConfig).then((res) => res.data);
+}
+
 export function getresults<T>(endpoint: string, requestConfig?: AxiosRequestConfig) {
     return axiosinstance.get<FetchResponse<T>>(endpoint, requestConfig).then((res) => res.data);
 }
 
-export function getGenre<T>(endpoint: string) {
-    return axiosinstance.get<T>(endpoint).then(res => res.data);
+export function getItem<T>(endpoint: string, id: number, requestConfig?: AxiosRequestConfig) {
+    return axiosinstance.get<FetchResponse<T>>(`${endpoint}/${id}`, requestConfig).then((res) => res.data);
 }
 
-export function getVideos<T>(endpoint:string) {
-    return axiosinstance.get<T>(endpoint).then(res => res.data);
-}
+

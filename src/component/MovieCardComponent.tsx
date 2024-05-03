@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Movie } from "../entities/Movie";
 import { Series } from "../entities/Series";
 import { Imagehandler } from "../services/imageHandler";
@@ -8,10 +8,16 @@ interface Props {
 }
 
 export const MovieCardComponent = ({ item }: Props) => {
+  const location = useLocation();
+
+  const { pathname } = location;
+
+  const setLocationUrl = pathname == '/movies' ? '/movie' : '/series';
+
   return (
-    <Link to={`/movie/${item.id}`}>
+    <Link to={`${setLocationUrl}/${item.id}`}>
       <div className="bg-dark text-white border-0 shadow overflow-hidden">
-        <img className="object-cover h-auto aspect-[1/1.5]" src={ Imagehandler(item.poster_path!)} alt="Card image"/>
+        <img className="object-cover h-auto aspect-[1/1.5] rounded-xl" src={ Imagehandler(item.poster_path!)} alt="Card image"/>
         <div className="h-100 d-flex xx">
           {/* <Card.Title className="text-center mt-auto w-100 m-0 z-1">
             <h2>{item.title || item.name}</h2>
