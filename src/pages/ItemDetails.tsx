@@ -24,13 +24,15 @@ export const ItemDetails = () => {
         </div>
       </div>
     );
-  
+
 
   if (!isLoading) {
     return (
       <div>
-        <div className="bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!, 'large')})`}}>
-          <div className="container flex gap-10 py-8">
+        <div className="bg-cover bg-no-repeat bg-center relative" style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!, 'large')})`}}>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black z-0"></div>
+
+          <div className="container flex gap-10 py-8 z-10 relative">
             <div className="max-w-[18.75rem]">
               <img className="rounded-xl"
                 src={Imagehandler(data?.poster_path!)}
@@ -49,7 +51,7 @@ export const ItemDetails = () => {
                 <p>{data?.overview}</p>
               </div>
             </div>
-          </div>          
+          </div>
         </div>
 
         <div className="container mt-12">

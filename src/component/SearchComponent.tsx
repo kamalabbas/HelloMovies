@@ -7,7 +7,6 @@ export const SearchComponent = () => {
   const searchQuery = useRef<HTMLInputElement>(null);
   const setSearchQuery = useMoviesQuery((s) => s.setSearch);
   const setApiType = useMoviesQuery((s) => s.setApiType);
-  const type = useMoviesQuery((s) => s.movieQuery.type);
 
   const navigate = useNavigate();
   const location = useLocation();
