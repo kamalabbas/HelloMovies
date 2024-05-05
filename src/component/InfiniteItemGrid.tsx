@@ -1,9 +1,10 @@
 import { FetchResponse } from "../entities/FetchResponse";
 import { Movie } from "../entities/Movie";
+import { Series } from "../entities/Series";
 import { MovieCardComponent } from "./MovieCardComponent";
 
 interface Props {
-  pages?: FetchResponse<Movie>[];
+  pages?: FetchResponse<Movie | Series>[];
 }
 
 const InfiniteItemGrid = ({ pages }: Props) => {
