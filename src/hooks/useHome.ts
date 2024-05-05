@@ -4,8 +4,6 @@ import { FetchResponse } from "../entities/FetchResponse";
 import { Movie } from "../entities/Movie";
 
 const apis = ['now_playing', 'popular', 'top_rated']
-
-
 // const apiBjt = {
 //     movies: [],
 //     series: []

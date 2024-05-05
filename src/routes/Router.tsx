@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "../pages/HomePage";
-import { DataGrid } from "../pages/DataGrid";
 import { ItemDetails } from "../pages/ItemDetails";
 import { MainLayout } from "../layout/MainLayout";
 import { NotFound } from "../pages/NotFound";
+import MoviePage from "../pages/MoviePage";
+import SeriesPages from "../pages/SeriesPage";
 
 const router = createBrowserRouter([
   {
@@ -11,8 +12,8 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "movies", element: <DataGrid /> },
-      { path: "tv-series", element: <DataGrid /> },
+      { path: "movies", element: <MoviePage /> },
+      { path: "tv-series", element: <SeriesPages /> },
       { path: "movie/:id", element: <ItemDetails /> },
       { path: "series/:id", element: <ItemDetails /> },
       { path: "*", element: <NotFound /> },
