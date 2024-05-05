@@ -1,7 +1,6 @@
 import { Series } from "../entities/Series";
 import { SekeltonCard } from "../component/SekeltonCard";
 import { Filters } from "../component/Filters";
-import InfiniteScroll from "react-infinite-scroll-component";
 import InfiniteItemGrid from "../component/InfiniteItemGrid";
 import useItemsQuery from "../state-management/ItemsQueryStore";
 import useItems from "../hooks/useItems";
@@ -24,6 +23,7 @@ const SeriesPage = () => {
         datalength={pageLength}
         hasMore={hasNextPage}
         next={fetchNextPage}
+        type="series"
       />
     </div>
   );
