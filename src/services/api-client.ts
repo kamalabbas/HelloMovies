@@ -39,7 +39,7 @@ export function getresults<T>(endpoint: string, requestConfig?: AxiosRequestConf
 }
 
 export function getItem<T>(endpoint: string, id: number, requestConfig?: AxiosRequestConfig) {
-    return axiosinstance.get<FetchResponse<T>>(`${endpoint}/${id}`, requestConfig).then((res) => res.data);
+    return axiosinstance.get<T>(`${endpoint}/${id}`, requestConfig).then((res) => res.data);
 }
 
 

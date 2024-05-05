@@ -28,8 +28,6 @@ export const SearchComponent = () => {
       setApiType("/search/tv");
       navigate('/tv-series')
     };
-
-    // if (pathname != "/search") navigate("search");
   };
 
   return (

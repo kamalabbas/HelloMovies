@@ -3,6 +3,7 @@ import { Movie } from "../entities/Movie";
 import { getresults } from "../services/api-client";
 import { FetchResponse } from "../entities/FetchResponse";
 import { MovieQuery } from "../state-management/MovieQueryStore";
+import { Series } from "../entities/Series";
 
 const useMovies = (movieQuery: MovieQuery) => useInfiniteQuery<FetchResponse<Movie>, Error>({
     queryKey: ['movies', movieQuery],
