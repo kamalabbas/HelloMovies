@@ -1,5 +1,4 @@
 import { Movie } from "../entities/Movie";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { SekeltonCard } from "../component/SekeltonCard";
 import { Filters } from "../component/Filters";
 import useItems from "../hooks/useItems";
@@ -18,16 +17,14 @@ const MoviePage = () => {
   return (
     <div className="container my-4 px-6">
       <Filters />
-      <InfiniteScroll
-        className="overflow-hidden"
-        dataLength={pageLength}
-        next={fetchNextPage}
+      {isLoading && <SekeltonCard count={10} />}
+      <InfiniteItemGrid
+        pages={data?.pages}
+        datalength={pageLength}
         hasMore={hasNextPage}
-        loader={<div></div>}
-      >
-        {isLoading && <SekeltonCard count={10} />}
-        <InfiniteItemGrid pages={data?.pages} />
-      </InfiniteScroll>
+        next={fetchNextPage}
+        type="movie"
+      />
     </div>
   );
 };
