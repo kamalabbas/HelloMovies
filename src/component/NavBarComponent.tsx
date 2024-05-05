@@ -1,24 +1,48 @@
 import { NavLink } from "react-router-dom";
 import { SearchComponent } from "./SearchComponent";
-import useMoviesQuery from "../state-management/MovieQueryStore";
+import useItemsQuery from "../state-management/ItemsQueryStore";
 
 function NavbarComponent() {
-  const setApiType = useMoviesQuery((s) => s.setApiType);
-  const setType = useMoviesQuery((s) => s.setType);
+  const setApiType = useItemsQuery((s) => s.setApiType);
+  const setType = useItemsQuery((s) => s.setType);
 
   return (
     <div className="container">
       <div className="navbar bg-base-100 py-4 px-0">
         <div className="flex-1">
-          <NavLink to="/" className="text-xl">Hello Movies</NavLink>
+          <NavLink to="/" className="text-xl">
+            Hello Movies
+          </NavLink>
         </div>
         <div className="flex-none gap-2">
           <ul className="menu menu-horizontal px-1 hidden md:flex">
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="movies" onClick={() => {setApiType('/discover/movie'); setType('movie')}}>Movies</NavLink></li>
-            <li><NavLink to="tv-series" onClick={() => {setApiType('/discover/tv'); setType('tv')}}>TV Series</NavLink></li>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="movies"
+                onClick={() => {
+                  setApiType("/discover/movie");
+                  setType("movie");
+                }}
+              >
+                Movies
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="tv-series"
+                onClick={() => {
+                  setApiType("/discover/tv");
+                  setType("tv");
+                }}
+              >
+                TV Series
+              </NavLink>
+            </li>
           </ul>
-        
+
           <SearchComponent />
 
           {/* <div className="dropdown md:hidden">

@@ -1,22 +1,23 @@
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Filters } from "../component/Filters";
-import InfiniteItemGrid from "../component/InfiniteItemGrid";
-import { SekeltonCard } from "../component/SekeltonCard";
 import { Series } from "../entities/Series";
-import useMovies from "../hooks/useMovies";
-import useMoviesQuery from "../state-management/MovieQueryStore";
+import { SekeltonCard } from "../component/SekeltonCard";
+import { Filters } from "../component/Filters";
+import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteItemGrid from "../component/InfiniteItemGrid";
+import useItemsQuery from "../state-management/ItemsQueryStore";
+import useItems from "../hooks/useItems";
 
 const SeriesPage = () => {
-  const movieQuery = useMoviesQuery((s) => s.movieQuery);
+  const itemsQuery = useItemsQuery((s) => s.itemsQuery);
 
   const { data, fetchNextPage, hasNextPage, isLoading } =
-    useMovies<Series>(movieQuery);
+    useItems<Series>(itemsQuery);
+
   const pageLength =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+
   return (
     <div className="container my-4 px-6">
       <Filters />
-
       <InfiniteScroll
         className="overflow-hidden"
         dataLength={pageLength}

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import useMoviesQuery from "../state-management/MovieQueryStore";
+import useMoviesQuery from "../state-management/ItemsQueryStore";
 
 // refacter this code.
 
@@ -14,16 +14,23 @@ function SortDropDown() {
     { label: "vote average asc", value: "vote_average.asc" },
     { label: "vote average desc", value: "vote_average.desc" },
     { label: "vote count asc", value: "vote_count.asc" },
-    { label: "vote count desc", value: "vote_count.desc" }
+    { label: "vote count desc", value: "vote_count.desc" },
   ];
 
   const SelectedSortOrder = useRef<HTMLSelectElement>(null);
-  const setSortOrder = useMoviesQuery(s => s.setSortOrder);
+  const setSortOrder = useMoviesQuery((s) => s.setSortOrder);
 
   return (
-    <select className="select w-full max-w-xs" ref={SelectedSortOrder} onChange={() => setSortOrder(SelectedSortOrder.current?.value)} id="dropdown-basic-button">
+    <select
+      className="select w-full max-w-xs"
+      ref={SelectedSortOrder}
+      onChange={() => setSortOrder(SelectedSortOrder.current?.value)}
+      id="dropdown-basic-button"
+    >
       {sortValues?.map((sort) => (
-        <option key={sort.value} value={sort.value}>{sort.label}</option>
+        <option key={sort.value} value={sort.value}>
+          {sort.label}
+        </option>
       ))}
     </select>
   );

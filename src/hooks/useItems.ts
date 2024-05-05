@@ -1,18 +1,18 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getresults } from "../services/api-client";
 import { FetchResponse } from "../entities/FetchResponse";
-import { MovieQuery } from "../state-management/MovieQueryStore";
+import { ItemsQuery } from "../state-management/ItemsQueryStore";
 
-const useMovies = <T>(movieQuery: MovieQuery) =>
+const useItems = <T>(itemsQuery: ItemsQuery) =>
   useInfiniteQuery<FetchResponse<T>, Error>({
-    queryKey: ["movies", movieQuery],
+    queryKey: ["items", itemsQuery],
     queryFn: ({ pageParam }) =>
-      getresults(movieQuery.apiType!, {
+      getresults(itemsQuery.apiType!, {
         params: {
-          with_genres: movieQuery.genreId,
-          sort_by: movieQuery.sortValue,
+          with_genres: itemsQuery.genreId,
+          sort_by: itemsQuery.sortValue,
           page: pageParam,
-          query: movieQuery.searchQuery,
+          query: itemsQuery.searchQuery,
         },
       }),
     initialPageParam: 1,
@@ -20,4 +20,4 @@ const useMovies = <T>(movieQuery: MovieQuery) =>
     staleTime: 24 * 60 * 60 * 1000,
   });
 
-export default useMovies;
+export default useItems;

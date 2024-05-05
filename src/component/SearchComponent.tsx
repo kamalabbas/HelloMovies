@@ -1,33 +1,33 @@
 // import { CiSearch } from "react-icons/ci";
 import { useRef } from "react";
-import useMoviesQuery from "../state-management/MovieQueryStore";
+import useItemsQuery from "../state-management/ItemsQueryStore";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const SearchComponent = () => {
   const searchQuery = useRef<HTMLInputElement>(null);
-  const setSearchQuery = useMoviesQuery((s) => s.setSearch);
-  const setApiType = useMoviesQuery((s) => s.setApiType);
-  const type = useMoviesQuery((s) => s.movieQuery.type);
+  const setSearchQuery = useItemsQuery((s) => s.setSearch);
+  const setApiType = useItemsQuery((s) => s.setApiType);
+  const type = useItemsQuery((s) => s.itemsQuery.type);
 
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
 
   const search = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if(searchQuery.current?.value == "") return;
-    
+    if (searchQuery.current?.value == "") return;
+
     if (e && e.key != "Enter") return;
     setSearchQuery(searchQuery.current?.value);
     setApiType("/search/tv");
-    
-    if(pathname == '/movies') {
+
+    if (pathname == "/movies") {
       setApiType("/search/movie");
-      navigate('/movies')
+      navigate("/movies");
     }
-    if(pathname == '/tv-series') {
+    if (pathname == "/tv-series") {
       setApiType("/search/tv");
-      navigate('/tv-series')
-    };
+      navigate("/tv-series");
+    }
   };
 
   return (
