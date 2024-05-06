@@ -1,4 +1,4 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { get } from "../services/api-client";
 import { FetchResponse } from "../entities/FetchResponse";
 import { Movie } from "../entities/Movie";
@@ -14,7 +14,7 @@ const queries = Object.entries(apiEnpoints).map(([key, values]) =>
     queryKey: [key + value],
     queryFn: () =>
       get<FetchResponse<Movie>>(
-        `${key}/${value}${key === "trending" && "/day"}`
+        `${key}/${value}${key === "trending" ? "/day" : ""}`
       ),
   }))
 );

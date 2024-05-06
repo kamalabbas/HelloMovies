@@ -4,13 +4,15 @@ import { MovieCardComponent } from "../component/MovieCardComponent";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export const HomePage = () => {
-  const [query1, query2, query3, query4, query5, query6] = useHome();
-  const { data: moviePopular } = query1;
-  const { data: movieTopRated } = query2;
-  const { data: tvPopular } = query3;
-  const { data: tvTopRated } = query4;
-  const { data: movieTrend } = query5;
-  const { data: tvTrend } = query6;
+  const [
+    { data: moviePopular },
+    { data: movieTopRated },
+    { data: tvPopular },
+    { data: tvTopRated },
+    { data: movieTrend },
+    { data: tvTrend },
+  ] = useHome();
+
   return (
     <>
       <Swiper>
