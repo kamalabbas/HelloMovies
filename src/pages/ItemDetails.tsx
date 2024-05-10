@@ -4,17 +4,22 @@ import { Imagehandler } from "../services/imageHandler";
 import { useVideos } from "../hooks/useVideos";
 import { SekeltonCard } from "../component/SekeltonCard";
 import { SkeletonText } from "../component/SkeletonText";
-import { getColorFromImage } from "../services/getCommonImageColor";
+import { useColor } from 'color-thief-react';
+
+
 
 export const ItemDetails = () => {
+  let bati5;
+
   const { id } = useParams();
 
   const { data, error, isLoading } = useItemDetails(id!);
   const { data: videos } = useVideos(+id!);
+  const { data: data2, loading } = useColor(`${import.meta.env.VITE_IMAGE_URL}w200${data?.backdrop_path!}`, 'rgbArray' , { crossOrigin: 'Anonymous', quality: 10});
 
-  if (error) throw error;  
+  if (error) throw error;
 
-  if(isLoading)
+  if(isLoading || loading)
     return (
       <div className="flex gap-10 container">
         <div className="">
@@ -26,14 +31,12 @@ export const ItemDetails = () => {
       </div>
     );
 
-    
 
-
-  if (!isLoading) {
+  if (!isLoading && !loading) {
     return (
       <div>
         <div className="bg-cover bg-no-repeat relative" style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!, 'large')})`, backgroundPosition: `left calc((35vw - 170px) - 340px) top`}}>
-          <div className="absolute inset-0 bg-gradient-to-r from-opacity-100 via-opacity-84 to-opacity-84 z-0" style={{backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) calc((35vw - 170px) - 340px), rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.45) 100%)'
+          <div className="absolute inset-0 bg-gradient-to-r from-opacity-100 via-opacity-84 to-opacity-84 z-0" style={{backgroundImage: `linear-gradient(to right, rgba(${data2 && data2[0]},${data2 && data2[1]},${data2 && data2[2]}, 1) calc((35vw - 170px) - 340px), rgba(${data2 && data2[0]},${data2 && data2[1]},${data2 && data2[2]}, 0.65) 50%, rgba(${data2 && data2[0]},${data2 && data2[1]},${data2 && data2[2]}, 0.45) 100%)`
       }}></div>
 
           <div className="container flex gap-10 py-8 z-10 relative text-white">
