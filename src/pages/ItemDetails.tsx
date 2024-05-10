@@ -4,6 +4,7 @@ import { Imagehandler } from "../services/imageHandler";
 import { useVideos } from "../hooks/useVideos";
 import { SekeltonCard } from "../component/SekeltonCard";
 import { SkeletonText } from "../component/SkeletonText";
+import { getColorFromImage } from "../services/getCommonImageColor";
 
 export const ItemDetails = () => {
   const { id } = useParams();
@@ -11,8 +12,7 @@ export const ItemDetails = () => {
   const { data, error, isLoading } = useItemDetails(id!);
   const { data: videos } = useVideos(+id!);
 
-  if (error) throw error;
-  // {getMostCommonColor(data?.backdrop_path!)}
+  if (error) throw error;  
 
   if(isLoading)
     return (
@@ -32,8 +32,9 @@ export const ItemDetails = () => {
   if (!isLoading) {
     return (
       <div>
-        <div className="bg-cover bg-no-repeat relative" style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!, 'large')})`, backgroundPosition: `left calc((50vw - 170px) - 340px) top`}}>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black z-0"></div>
+        <div className="bg-cover bg-no-repeat relative" style={{backgroundImage: `url(${Imagehandler(data?.backdrop_path!, 'large')})`, backgroundPosition: `left calc((35vw - 170px) - 340px) top`}}>
+          <div className="absolute inset-0 bg-gradient-to-r from-opacity-100 via-opacity-84 to-opacity-84 z-0" style={{backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) calc((35vw - 170px) - 340px), rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.45) 100%)'
+      }}></div>
 
           <div className="container flex gap-10 py-8 z-10 relative text-white">
             <div className="shrink-0 max-w-[18.75rem]">
@@ -44,7 +45,7 @@ export const ItemDetails = () => {
                   <h1 className="font-bold">{data?.title}</h1><span className="text-3xl opacity-60">({data?.release_date.substring(0, 4)})</span>
                 </div>
                 <div className="mt-2">
-                  {data?.release_date} - <span className="">{data?.genres.map((genre, i) => <span>{genre.name}{(i != data?.genres.length - 1 ) && ','} </span>)}</span> - {data?.runtime ? `${Math.floor(data?.runtime/60)}h ${Math.ceil((60 * Math.floor(data?.runtime/60)) - data?.runtime)}m` : ''}
+                  {data?.release_date} - <span className="">{data?.genres.map((genre, i) => <span key={genre.id}>{genre.name}{(i != data?.genres.length - 1 ) && ','} </span>)}</span> - {data?.runtime ? `${Math.floor(data?.runtime/60)}h ${Math.ceil((data?.runtime - 60 * Math.floor(data?.runtime/60)))}m` : ''}
                 </div>
 
 

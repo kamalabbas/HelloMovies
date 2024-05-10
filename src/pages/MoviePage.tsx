@@ -8,8 +8,7 @@ import InfiniteItemGrid from "../component/InfiniteItemGrid";
 const MoviePage = () => {
   const itemsQuery = useItemsQuery((s) => s.itemsQuery);
 
-  const { data, fetchNextPage, hasNextPage, isLoading } =
-    useItems<Movie>(itemsQuery);
+  const { data, fetchNextPage, hasNextPage, isLoading } = useItems<Movie>(itemsQuery);
 
   const pageLength =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
