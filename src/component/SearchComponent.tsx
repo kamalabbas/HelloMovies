@@ -15,7 +15,7 @@ export const SearchComponent = () => {
 
   const search = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (searchQuery.current?.value == "") return;
-
+    
     if (e && e.key != "Enter") return;
     setSearchQuery(searchQuery.current?.value);
     setApiType("/search/tv");

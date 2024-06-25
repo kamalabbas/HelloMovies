@@ -20,14 +20,15 @@ function NavbarComponent() {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink
+              {/* <NavLink
                 to="movies"
                 onClick={() => {
                   setApiType("/discover/movie");
                   setType("movie");
                 }}>
                 Movies
-              </NavLink>
+              </NavLink> */}
+              <NavLink to="movies">Movies</NavLink>
             </li>
             {/* <li>
               <NavLink
