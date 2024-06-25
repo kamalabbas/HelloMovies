@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import APIClient from "../services/api-client";
+import { getItem } from "../services/api-client";
 import { Movie } from "../entities/Movie";
 
-const apiClient = new APIClient<Movie>("/movie");
-
-const useItemDetails = (id: number | string) =>
+const useItemDetails = (id: number) =>
   useQuery({
     queryKey: ["itemDetails", id],
-    queryFn: () => apiClient.get(id),
+    queryFn: () => getItem<Movie>("/movie", id),
+    staleTime: 24 * 60 * 60 * 1000,
   });
 
 export default useItemDetails;

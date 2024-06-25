@@ -34,7 +34,7 @@ export const SearchComponent = () => {
     <div className="form-control">
       <input
         type="text"
-        className="input input-bordered w-24 md:w-auto"
+        className="input input-bordered w-auto"
         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => search(e)}
         ref={searchQuery}
         placeholder="Search"

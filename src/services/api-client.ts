@@ -4,31 +4,32 @@ import { FetchResponse } from "../entities/FetchResponse";
 const axiosinstance = axios.create({
     baseURL: "https://api.themoviedb.org/3/",
     headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOTI4YzM4NzdiYWFhNDRiNjBmNDEzMjZkNzgxNTQxOSIsInN1YiI6IjVmNDU2YWM3ODEzY2I2MDAzNGEzOTNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YLyH-4RUns2KmHWPlhVtdkvOrTvg_5hBj76NeV9OczY",
+        Authorization: import.meta.env.VITE_TOkEN,
         accept:' application/json'
     },
 });
-class APIClient<T> {
-    private endpoint: string;
 
-    constructor(endpoint: string) {
-        this.endpoint = endpoint
-    }
+// class APIClient<T> {
+//     private endpoint: string;
 
-    getAll = (requestConfig?: AxiosRequestConfig) => {
-        return axiosinstance.get<FetchResponse<T>>(this.endpoint, requestConfig).then((res) => res.data);
-    }
+//     constructor(endpoint: string) {
+//         this.endpoint = endpoint
+//     }
 
-    getGenre = () => {
-        return axiosinstance.get<T>(this.endpoint).then((res) => res.data);
-    }
+//     getAll = (requestConfig?: AxiosRequestConfig) => {
+//         return axiosinstance.get<FetchResponse<T>>(this.endpoint, requestConfig).then((res) => res.data);
+//     }
 
-    get = (id: number | string) => {
-        return axiosinstance.get<T>(this.endpoint + '/' +  id).then((res) => res.data);
-    }
-}
+//     getGenre = () => {
+//         return axiosinstance.get<T>(this.endpoint).then((res) => res.data);
+//     }
 
-export default APIClient;
+//     get = (id: number | string) => {
+//         return axiosinstance.get<T>(this.endpoint + '/' +  id).then((res) => res.data);
+//     }
+// }
+
+// export default APIClient;
 
 export function get<T>(endpoint: string, requestConfig?: AxiosRequestConfig) {
     return axiosinstance.get<T>(endpoint, requestConfig).then((res) => res.data);
