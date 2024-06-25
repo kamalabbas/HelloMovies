@@ -16,6 +16,7 @@ const queries = Object.entries(apiEnpoints).map(([key, values]) =>
       get<FetchResponse<Movie>>(
         `${key}/${value}${key === "trending" ? "/day" : ""}`
       ),
+      staleTime: 24 * 60 * 60 * 1000,
   }))
 );
 

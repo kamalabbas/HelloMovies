@@ -6,14 +6,10 @@ import { SekeltonCard } from "../component/SekeltonCard";
 import { SkeletonText } from "../component/SkeletonText";
 import { useColor } from 'color-thief-react';
 
-
-
 export const ItemDetails = () => {
-  let bati5;
-
   const { id } = useParams();
 
-  const { data, error, isLoading } = useItemDetails(id!);
+  const { data, error, isLoading } = useItemDetails(+id!);
   const { data: videos } = useVideos(+id!);
   const { data: data2, loading } = useColor(`${import.meta.env.VITE_IMAGE_URL}w200${data?.backdrop_path!}`, 'rgbArray' , { crossOrigin: 'Anonymous', quality: 10});
 
